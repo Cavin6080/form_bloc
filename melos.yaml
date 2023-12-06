@@ -8,3 +8,7 @@ packages:
 scripts:
   analyze:
     exec: dart analyze .
+
+  clear:
+    description: Run Flutter Clean
+    exec: flutter clean
