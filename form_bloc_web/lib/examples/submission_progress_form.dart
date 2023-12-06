@@ -8,7 +8,7 @@ import 'package:rxdart/rxdart.dart';
 void main() => runApp(const App());
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,17 +38,17 @@ class SubmissionProgressFormBloc extends FormBloc<String, String> {
   void onSubmitting() async {
     debugPrint(username.value);
 
-    final int _currentUploadIndex = _fakeUploads.length;
+    final int currentUploadIndex = _fakeUploads.length;
     _fakeUploads.add(FakeUpload());
     _fakeUploadProgressSubscriptions.add(
-      _fakeUploads[_currentUploadIndex].uploadProgress.listen(
+      _fakeUploads[currentUploadIndex].uploadProgress.listen(
         (progress) {
-          if (!_fakeUploads[_currentUploadIndex].isCancelled) {
+          if (!_fakeUploads[currentUploadIndex].isCancelled) {
             emitSubmitting(progress: progress);
           }
         },
         onDone: () async {
-          if (!_fakeUploads[_currentUploadIndex]._isCancelled) {
+          if (!_fakeUploads[currentUploadIndex]._isCancelled) {
             await Future<void>.delayed(const Duration(milliseconds: 400));
             emitSuccess();
           }
@@ -107,7 +107,7 @@ class FakeUpload {
 }
 
 class SubmissionProgressForm extends StatelessWidget {
-  const SubmissionProgressForm({Key? key}) : super(key: key);
+  const SubmissionProgressForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -168,7 +168,7 @@ class SubmissionProgressForm extends StatelessWidget {
 }
 
 class SubmitButton extends StatelessWidget {
-  const SubmitButton({Key? key}) : super(key: key);
+  const SubmitButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -210,11 +210,11 @@ class LiquidLinearProgressIndicatorWithText extends ImplicitlyAnimatedWidget {
   final double percent;
 
   const LiquidLinearProgressIndicatorWithText({
-    Key? key,
+    super.key,
     required this.percent,
-    Duration duration = const Duration(milliseconds: 300),
-    Curve curve = Curves.linear,
-  }) : super(duration: duration, curve: curve, key: key);
+    super.duration = const Duration(milliseconds: 300),
+    super.curve,
+  });
 
   @override
   ImplicitlyAnimatedWidgetState<ImplicitlyAnimatedWidget> createState() =>
@@ -258,7 +258,7 @@ class LoadingDialog extends StatelessWidget {
 
   static void hide(BuildContext context) => Navigator.pop(context);
 
-  const LoadingDialog({Key? key}) : super(key: key);
+  const LoadingDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -279,7 +279,7 @@ class LoadingDialog extends StatelessWidget {
 }
 
 class SuccessScreen extends StatelessWidget {
-  const SuccessScreen({Key? key}) : super(key: key);
+  const SuccessScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

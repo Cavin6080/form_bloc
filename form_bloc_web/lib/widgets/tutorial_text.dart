@@ -6,9 +6,9 @@ class TutorialText extends StatelessWidget {
   final EdgeInsets padding;
   const TutorialText(
     this.text, {
-    Key? key,
+    super.key,
     this.padding = const EdgeInsets.fromLTRB(0, 0, 0, 12),
-  }) : super(key: key);
+  });
 
   factory TutorialText.sub(String text) =>
       TutorialText(text, padding: const EdgeInsets.fromLTRB(0, 12, 0, 12));

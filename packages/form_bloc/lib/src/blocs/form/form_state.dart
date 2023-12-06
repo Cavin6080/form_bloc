@@ -530,7 +530,7 @@ abstract class FormBlocState<SuccessResponse, FailureResponse> extends Equatable
   String toString() => _toStringWith();
 
   String _toStringWith([String? extra]) {
-    String _allStepsToJson() {
+    String allStepsToJson() {
       var string = '';
       if (numberOfSteps > 1) {
         _fieldBlocs.forEach((key, value) {
@@ -541,7 +541,7 @@ abstract class FormBlocState<SuccessResponse, FailureResponse> extends Equatable
       return string;
     }
 
-    String _allStepsIsValid() {
+    String allStepsIsValid() {
       var string = '';
       if (numberOfSteps > 1) {
         _isValidByStep.forEach((key, value) {
@@ -552,6 +552,7 @@ abstract class FormBlocState<SuccessResponse, FailureResponse> extends Equatable
       return string;
     }
 
+    // ignore: no_leading_underscores_for_local_identifiers
     var _toString = '$runtimeType {';
 
     _toString += '\n  isEditing: $isEditing';
@@ -563,9 +564,9 @@ abstract class FormBlocState<SuccessResponse, FailureResponse> extends Equatable
     _toString += ',\n  currentStep: $currentStep';
     _toString += ',\n  numberOfSteps: $numberOfSteps';
 
-    _toString += _allStepsIsValid();
+    _toString += allStepsIsValid();
     _toString += ',\n  isValid(): ${isValid()}';
-    _toString += _allStepsToJson();
+    _toString += allStepsToJson();
     _toString += ',\n  toJson(): ${toJson()}';
     _toString += ',\n  fieldBlocs: $_fieldBlocs';
     _toString += '\n}';

@@ -12,3 +12,7 @@ scripts:
   clear:
     description: Run Flutter Clean
     exec: flutter clean
+
+  fix:
+    description: Run Dart Fix in All the packages
+    exec: dart fix --apply

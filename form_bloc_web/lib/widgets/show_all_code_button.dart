@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:form_bloc_web/widgets/widgets.dart';
 
 class ShowAllCodeButton extends StatelessWidget {
-  const ShowAllCodeButton({Key? key}) : super(key: key);
+  const ShowAllCodeButton({super.key});
 
   @override
   Widget build(BuildContext context) {

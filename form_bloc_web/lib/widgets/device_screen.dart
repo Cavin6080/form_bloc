@@ -5,9 +5,9 @@ class DeviceScreen extends StatelessWidget {
   final Widget app;
 
   const DeviceScreen({
-    Key? key,
+    super.key,
     required this.app,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

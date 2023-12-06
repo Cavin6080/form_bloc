@@ -3,9 +3,9 @@ import 'package:form_bloc_web/widgets/widgets.dart';
 
 class TutorialScreen extends StatelessWidget {
   const TutorialScreen({
-    Key? key,
+    super.key,
     required this.children,
-  }) : super(key: key);
+  });
   final List<Widget> children;
 
   @override

@@ -8,8 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../routes.dart';
 
 class AppDrawer extends StatefulWidget {
-  const AppDrawer({required this.permanentlyDisplay, Key? key})
-      : super(key: key);
+  const AppDrawer({required this.permanentlyDisplay, super.key});
 
   final bool permanentlyDisplay;
 
@@ -155,7 +154,7 @@ class _AppDrawerState extends State<AppDrawer> with RouteAware {
       alignment: Alignment.centerLeft,
       child: Text(
         'Examples',
-        style: Theme.of(context).textTheme.headline6,
+        style: Theme.of(context).textTheme.titleLarge,
       ),
     );
   }
@@ -176,9 +175,9 @@ class _AppDrawerState extends State<AppDrawer> with RouteAware {
               Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.only(right: 55),
-                child: Column(
+                child: const Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: const <Widget>[
+                  children: <Widget>[
                     Text(
                       'form_bloc',
                       style: TextStyle(
@@ -264,14 +263,13 @@ class _AppDrawerState extends State<AppDrawer> with RouteAware {
 
 class DrawerItem extends StatefulWidget {
   const DrawerItem({
-    Key? key,
+    super.key,
     required this.title,
     required this.routeName,
     required String? selectedRoute,
     required this.permanentlyDisplay,
     this.iconData,
-  })  : isCurrentRoute = routeName == selectedRoute,
-        super(key: key);
+  })  : isCurrentRoute = routeName == selectedRoute;
 
   final String title;
   final String routeName;

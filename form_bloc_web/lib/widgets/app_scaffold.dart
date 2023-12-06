@@ -4,11 +4,11 @@ import 'package:form_bloc_web/widgets/app_drawer.dart';
 
 class AppScaffold extends StatelessWidget {
   const AppScaffold({
-    Key? key,
+    super.key,
     this.showParticlesBackground = false,
     required this.appBar,
     required this.body,
-  }) : super(key: key);
+  });
 
   final bool showParticlesBackground;
   final AppBar appBar;

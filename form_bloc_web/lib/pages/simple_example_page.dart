@@ -3,7 +3,7 @@ import 'package:form_bloc_web/examples/simple_form.dart';
 import 'package:form_bloc_web/widgets/widgets.dart';
 
 class SimpleExamplePage extends StatelessWidget {
-  const SimpleExamplePage({Key? key}) : super(key: key);
+  const SimpleExamplePage({super.key});
 
   final String _formBlocName = 'LoginFormBloc';
   final String _formBlocWidgetBuildName = 'LoginForm > build';
@@ -26,7 +26,7 @@ class SimpleExamplePage extends StatelessWidget {
     for (var i = 0; i < steps.length; i++) {
       children.add(Column(
         children: <Widget>[
-          TutorialText.header('# ${i + 1}. ' + steps[i].title),
+          TutorialText.header('# ${i + 1}. ${steps[i].title}'),
           ...steps[i].children,
         ],
       ));
@@ -167,7 +167,7 @@ This validators are already included in the library, but you can add several val
 Once you have created all the field blocs, you must add them to the form bloc using the `addFieldBlocs` method.        
 '''),
         CodeCard.main(
-          nestedPath: _formBlocName + ' > LoginFormBloc',
+          nestedPath: '$_formBlocName > LoginFormBloc',
           code: '''
   LoginFormBloc() {
     addFieldBlocs(
@@ -194,7 +194,7 @@ This method will be called every time you call the `submit` method only if all t
 When this method is called the state of the form will be `FormBlocSubmitting`. 
 '''),
         CodeCard.main(
-          nestedPath: _formBlocName + ' > onSubmitting',
+          nestedPath: '$_formBlocName > onSubmitting',
           code: '''
   @override
   void onSubmitting() async {
@@ -210,7 +210,7 @@ To get the current value of each field bloc, simply use the getter `value`.
 In our case we only print their values.       
 '''),
         CodeCard.main(
-          nestedPath: _formBlocName + ' > onSubmitting',
+          nestedPath: '$_formBlocName > onSubmitting',
           code: '''
     print(email.value);
     print(password.value);
@@ -227,7 +227,7 @@ And then if the value of `showSuccessResponse` is true we will emit a success, o
 In the success and failure we can add an object of the type that we indicated when creating the form bloc, that is String, in our case we will only add a message to the failure.    
 '''),
         CodeCard.main(
-          nestedPath: _formBlocName + ' > onSubmitting',
+          nestedPath: '$_formBlocName > onSubmitting',
           code: '''
     await Future<void>.delayed(Duration(seconds: 1));
 

@@ -7,10 +7,10 @@ import 'package:form_bloc_web/widgets/gradient_button.dart';
 
 class CodeScreen extends StatefulWidget {
   const CodeScreen({
-    Key? key,
+    super.key,
     this.codePath,
     this.extraDependencies,
-  }) : super(key: key);
+  });
 
   final String? codePath;
 

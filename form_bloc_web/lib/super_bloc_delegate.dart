@@ -12,24 +12,24 @@ class SuperBlocDelegate extends BlocObserver {
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
 
-    var _string =
+    var string =
         '\n********************************************************************************\n';
-    _string +=
+    string +=
         '******************************* TRANSITION START *******************************\n';
-    _string +=
+    string +=
         '********************************************************************************\n';
-    _string += 'BLOC: ${bloc.runtimeType}\n';
-    _string += 'EVENT: ${transition.event}\n';
-    _string += 'CURRENT STATE: ${transition.currentState}\n';
-    _string += 'NEXT STATE: ${transition.nextState}\n';
-    _string +=
+    string += 'BLOC: ${bloc.runtimeType}\n';
+    string += 'EVENT: ${transition.event}\n';
+    string += 'CURRENT STATE: ${transition.currentState}\n';
+    string += 'NEXT STATE: ${transition.nextState}\n';
+    string +=
         '********************************************************************************\n';
-    _string +=
+    string +=
         '******************************** TRANSITION END ********************************\n';
-    _string +=
+    string +=
         '********************************************************************************\n';
 
-    _printWrapped(_string);
+    _printWrapped(string);
   }
 
   @override

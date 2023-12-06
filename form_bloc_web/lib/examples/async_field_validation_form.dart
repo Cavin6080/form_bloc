@@ -4,7 +4,7 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 void main() => runApp(const App());
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +62,7 @@ class AsyncFieldValidationFormBloc extends FormBloc<String, String> {
 }
 
 class AsyncFieldValidationForm extends StatelessWidget {
-  const AsyncFieldValidationForm({Key? key}) : super(key: key);
+  const AsyncFieldValidationForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -75,8 +75,7 @@ class AsyncFieldValidationForm extends StatelessWidget {
           return Scaffold(
             resizeToAvoidBottomInset: false,
             appBar: AppBar(title: const Text('Async Field Validation')),
-            body:
-                FormBlocListener<AsyncFieldValidationFormBloc, String, String>(
+            body: FormBlocListener<AsyncFieldValidationFormBloc, String, String>(
               onSubmitting: (context, state) {
                 LoadingDialog.show(context);
               },
@@ -86,14 +85,14 @@ class AsyncFieldValidationForm extends StatelessWidget {
               onSuccess: (context, state) {
                 LoadingDialog.hide(context);
 
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (_) => const SuccessScreen()));
+                Navigator.of(context)
+                    .pushReplacement(MaterialPageRoute(builder: (_) => const SuccessScreen()));
               },
               onFailure: (context, state) {
                 LoadingDialog.hide(context);
 
-                ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(state.failureResponse!)));
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text(state.failureResponse!)));
               },
               child: SingleChildScrollView(
                 physics: const ClampingScrollPhysics(),
@@ -137,12 +136,12 @@ class LoadingDialog extends StatelessWidget {
 
   static void hide(BuildContext context) => Navigator.pop(context);
 
-  const LoadingDialog({Key? key}) : super(key: key);
+  const LoadingDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
+    return PopScope(
+      canPop: false,
       child: Center(
         child: Card(
           child: Container(
@@ -158,7 +157,7 @@ class LoadingDialog extends StatelessWidget {
 }
 
 class SuccessScreen extends StatelessWidget {
-  const SuccessScreen({Key? key}) : super(key: key);
+  const SuccessScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -177,8 +176,7 @@ class SuccessScreen extends StatelessWidget {
             const SizedBox(height: 10),
             ElevatedButton.icon(
               onPressed: () => Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                      builder: (_) => const AsyncFieldValidationForm())),
+                  MaterialPageRoute(builder: (_) => const AsyncFieldValidationForm())),
               icon: const Icon(Icons.replay),
               label: const Text('AGAIN'),
             ),

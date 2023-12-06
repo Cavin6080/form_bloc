@@ -5,12 +5,12 @@ import 'package:form_bloc_web/widgets/under_construction.dart';
 
 class ExampleScaffold extends StatelessWidget {
   const ExampleScaffold({
-    Key? key,
+    super.key,
     required this.title,
     required this.demo,
     this.tutorial,
     required this.code,
-  }) : super(key: key);
+  });
 
   final String title;
 
@@ -95,7 +95,7 @@ class ExampleScaffold extends StatelessWidget {
 
 class AppTab extends StatefulWidget {
   final Widget child;
-  const AppTab({Key? key, required this.child}) : super(key: key);
+  const AppTab({super.key, required this.child});
 
   @override
   _AppTabState createState() => _AppTabState();

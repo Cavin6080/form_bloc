@@ -4,7 +4,7 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 void main() => runApp(const App());
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +99,7 @@ class ConditionalFieldsFormBloc extends FormBloc<String, String> {
 }
 
 class ConditionalFieldsForm extends StatelessWidget {
-  const ConditionalFieldsForm({Key? key}) : super(key: key);
+  const ConditionalFieldsForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -129,14 +129,14 @@ class ConditionalFieldsForm extends StatelessWidget {
                 onSuccess: (context, state) {
                   LoadingDialog.hide(context);
 
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (_) => const SuccessScreen()));
+                  Navigator.of(context)
+                      .pushReplacement(MaterialPageRoute(builder: (_) => const SuccessScreen()));
                 },
                 onFailure: (context, state) {
                   LoadingDialog.hide(context);
 
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(state.failureResponse!)));
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text(state.failureResponse!)));
                 },
                 child: SingleChildScrollView(
                   physics: const ClampingScrollPhysics(),
@@ -146,8 +146,7 @@ class ConditionalFieldsForm extends StatelessWidget {
                       children: <Widget>[
                         RadioButtonGroupFieldBlocBuilder(
                           selectFieldBloc: formBloc.doYouLikeFormBloc,
-                          itemBuilder: (context, dynamic value) =>
-                              FieldItem(child: Text(value)),
+                          itemBuilder: (context, dynamic value) => FieldItem(child: Text(value)),
                           decoration: const InputDecoration(
                             labelText: 'Do you like form bloc?',
                             prefixIcon: SizedBox(),
@@ -166,8 +165,7 @@ class ConditionalFieldsForm extends StatelessWidget {
                           width: 200,
                           child: CheckboxFieldBlocBuilder(
                             booleanFieldBloc: formBloc.showSecretField,
-                            controlAffinity:
-                                FieldBlocBuilderControlAffinity.trailing,
+                            controlAffinity: FieldBlocBuilderControlAffinity.trailing,
                             body: Container(
                               alignment: Alignment.center,
                               child: const Text('Do you want to see a secret field?'),
@@ -209,12 +207,12 @@ class LoadingDialog extends StatelessWidget {
 
   static void hide(BuildContext context) => Navigator.pop(context);
 
-  const LoadingDialog({Key? key}) : super(key: key);
+  const LoadingDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
+    return PopScope(
+      canPop: false,
       child: Center(
         child: Card(
           child: Container(
@@ -230,7 +228,7 @@ class LoadingDialog extends StatelessWidget {
 }
 
 class SuccessScreen extends StatelessWidget {
-  const SuccessScreen({Key? key}) : super(key: key);
+  const SuccessScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
