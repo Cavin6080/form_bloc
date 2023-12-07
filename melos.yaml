@@ -1,5 +1,9 @@
 name: form_bloc_melos
 
+command:
+  version:
+    updateGitTagRefs: true
+
 packages:
   - form_bloc_web
   - packages/flutter_form_bloc
