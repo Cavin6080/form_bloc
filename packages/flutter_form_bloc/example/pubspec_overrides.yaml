@@ -1,0 +1,6 @@
+# melos_managed_dependency_overrides: flutter_form_bloc,form_bloc
+dependency_overrides:
+  flutter_form_bloc:
+    path: ..
+  form_bloc:
+    path: ../../form_bloc
