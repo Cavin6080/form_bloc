@@ -6,11 +6,9 @@ import 'package:flutter_form_bloc/src/flutter_typeahead.dart';
 import 'package:flutter_form_bloc/src/theme/field_theme_resolver.dart';
 import 'package:flutter_form_bloc/src/utils/utils.dart';
 
-export 'package:flutter/services.dart'
-    show TextInputType, TextInputAction, TextCapitalization;
+export 'package:flutter/services.dart' show TextInputType, TextInputAction, TextCapitalization;
 export 'package:flutter/widgets.dart' show EditableText;
-export 'package:flutter_form_bloc/src/flutter_typeahead.dart'
-    show SuggestionsBoxDecoration;
+export 'package:flutter_form_bloc/src/flutter_typeahead.dart' show SuggestionsBoxDecoration;
 
 const double _kMenuItemHeight = 48.0;
 const EdgeInsets _kMenuItemPadding = EdgeInsets.symmetric(horizontal: 16.0);
@@ -74,6 +72,7 @@ class TextFieldBlocBuilder extends StatefulWidget {
     required this.textFieldBloc,
     this.enableOnlyWhenFormBlocCanSubmit = false,
     this.isEnabled = true,
+    this.obscuringCharacter,
     this.errorBuilder,
     this.suffixButton,
     this.padding,
@@ -157,11 +156,9 @@ class TextFieldBlocBuilder extends StatefulWidget {
           !expands || (minLines == null),
           'minLines and maxLines must be null when expands is true.',
         ),
-        assert(maxLength == null ||
-            maxLength == TextFieldBlocBuilder.noMaxLength ||
-            maxLength > 0),
-        keyboardType = keyboardType ??
-            (maxLines == 1 ? TextInputType.text : TextInputType.multiline),
+        assert(maxLength == null || maxLength == TextFieldBlocBuilder.noMaxLength || maxLength > 0),
+        keyboardType =
+            keyboardType ?? (maxLines == 1 ? TextInputType.text : TextInputType.multiline),
         textStyle = textStyle ?? style,
         super(key: key);
 
@@ -398,6 +395,9 @@ class TextFieldBlocBuilder extends StatefulWidget {
   /// If null, defaults to the `subtitle` text style from the current [Theme].
   /// {@endtemplate}
   final TextStyle? textStyle;
+
+  /// {@macro flutter.widgets.editableText.obscuringCharacter}
+  final String? obscuringCharacter;
 
   /// {@template flutter_form_bloc.FieldBlocBuilder.textColor}
   /// It is the color of the text
@@ -723,8 +723,7 @@ class TextFieldBlocBuilder extends StatefulWidget {
       ),
       suggestionsTextStyle: fieldTheme.suggestionsTextStyle ??
           theme.textTheme.titleMedium!.copyWith(
-            color: ThemeData.estimateBrightnessForColor(theme.canvasColor) ==
-                    Brightness.dark
+            color: ThemeData.estimateBrightnessForColor(theme.canvasColor) == Brightness.dark
                 ? Colors.white
                 : Colors.grey[800],
           ),
@@ -792,8 +791,7 @@ class _TextFieldBlocBuilderState extends State<TextFieldBlocBuilder> {
 
     // TODO: Find out why the cursor returns to the beginning.
     await Future.delayed(const Duration(milliseconds: 0));
-    _controller.selection =
-        TextSelection.collapsed(offset: _controller.text.length);
+    _controller.selection = TextSelection.collapsed(offset: _controller.text.length);
   }
 
   void obscureText(bool value) {
@@ -814,8 +812,7 @@ class _TextFieldBlocBuilderState extends State<TextFieldBlocBuilder> {
           builder: (context, state) {
             final isEnabled = fieldBlocIsEnabled(
               isEnabled: widget.isEnabled,
-              enableOnlyWhenFormBlocCanSubmit:
-                  widget.enableOnlyWhenFormBlocCanSubmit,
+              enableOnlyWhenFormBlocCanSubmit: widget.enableOnlyWhenFormBlocCanSubmit,
               fieldBlocState: state,
             );
 
@@ -915,11 +912,12 @@ class _TextFieldBlocBuilderState extends State<TextFieldBlocBuilder> {
     return TypeAheadField<String>(
       textFieldConfiguration: TextFieldConfiguration<String>(
         controller: _controller,
+        obscuringCharacter: widget.obscuringCharacter,
         autofillHints: widget.autofillHints,
         decoration: _buildDecoration(fieldTheme, state),
         keyboardType: widget.keyboardType,
-        textInputAction: widget.textInputAction ??
-            (widget.nextFocusNode != null ? TextInputAction.next : null),
+        textInputAction:
+            widget.textInputAction ?? (widget.nextFocusNode != null ? TextInputAction.next : null),
         textCapitalization: widget.textCapitalization,
         style: Style.resolveTextStyle(
           isEnabled: isEnabled,
