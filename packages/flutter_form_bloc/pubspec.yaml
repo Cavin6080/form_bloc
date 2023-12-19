@@ -19,7 +19,7 @@ dependencies:
     git:
       url: https://github.com/Cavin6080/form_bloc.git
       path: packages/form_bloc
-      branch: vepaar-code
+      ref: 3c8590f
 
   equatable: ^2.0.3
   rxdart: ^0.27.3
